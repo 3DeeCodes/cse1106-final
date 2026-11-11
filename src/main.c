@@ -118,17 +118,12 @@ int main(void) {
 //	runInitialTests();
 	printf("Temperature\t System Status \t Warning LED\n");
 	for (int i = 0; i < READING_COUNT; i++){
-		char str[10];
-		char LED[10];
-	if (isOutOfRange(readings[i]==1))	{
-	 str[7] = "Warning";
-	 LED [10] = "On";
-	} else
-	{
-	 str[6] = "Normal";
-	 LED [10] = "Off";
-	}
-		printf("%d %s %s\t",readings[READING_COUNT], str, LED);
+		
+		if (isOutOfRange(readings[i]==1))	{
+			printf("F %f %s %s ", readings[i], "WARNING", "ON");
+		}
+
+		//printf("%d %s %s\t",readings[READING_COUNT], str, LED);
 // printf("fajkhfakjhfakjf %d", &tungtung);
 	}
 	
