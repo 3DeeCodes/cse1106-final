@@ -125,11 +125,30 @@ int main(void) {
 		else 								{
 			printf("\t %.1f F %s %s ", readings[i], "\tNORMAL\t", "OFF\n");
 		}
-		//printf("%d %s %s\t",readings[READING_COUNT], str, LED);
-// printf("fajkhfakjhfakjf %d", &tungtung);
+		
 	}
 	
-	
+	FILE* file = fopen("testResults.txt", "w");
+	if (file == NULL)
+	{
+		perror("Could not create file");
+			return 1;
+
+	}
+
+	//writing the same printed results into the separate file
+	for (int i = 0; i < READING_COUNT; i++) {
+
+		if (isOutOfRange(readings[i]) == 1) {
+			fprintf(" \t %.1f F %s %s ", readings[i], "\tWARNING\t", "ON\n");
+		}
+		else {
+			fprintf("\t %.1f F %s %s ", readings[i], "\tNORMAL\t", "OFF\n");
+		}
+
+	}
+
+	fclose(file);
 	
 	return 0;
 }
