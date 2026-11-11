@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <math.h>
 #define READING_COUNT 5
+int Temp_Max = 76;
+int Temp_Min = 68;
+
+
+
+
+
+
+
+
 double calculateAverage(double readings[], int count) {
 	double total = 0;
 	for (int i = 0; i < count; i++) total += readings[i];
@@ -12,7 +22,7 @@ void displayReadings(double readings[], int count) {
 	for (int i = 0; i < count; i++) printf("%.1f F\n", readings[i]);
 }
 int isOutOfRange(double temperature) {
-	return (temperature > 75) ? 1 : 0;
+	return (temperature > Temp_Max || temperature < Temp_Min) ? 1 : 0;
 }
 void checkReadings(double readings[], int count) {
 	printf("\nReadings requiring attention:\n");
@@ -113,5 +123,17 @@ int main(void) {
 	printf("========================================\n");
 	printf("Tests passed: %d/%d\n", testsPassed, testsRun);
 	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	return 0;
 }
