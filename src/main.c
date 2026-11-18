@@ -136,11 +136,23 @@ int main(void) {
 
 	}
 
+	FILE* file = fopen("output.txt", "w");
+
+	if (file == NULL)
+	{
+		printf("Could not open the file.\n");
+		return 1;
+
+	}
+
+
+
 	//writing the same printed results into the separate file
 	for (int i = 0; i < READING_COUNT; i++) {
 
 		if (isOutOfRange(readings[i]) == 1) {
 			fprintf(" \t %.1f F %s %s ", readings[i], "\tWARNING\t", "ON\n");
+
 		}
 		else {
 			fprintf("\t %.1f F %s %s ", readings[i], "\tNORMAL\t", "OFF\n");
