@@ -132,6 +132,11 @@ int main(void) {
 		{
 			 gpioWrite(PIN, 1);
 		}
+		else
+		{
+			gpioWrite(PIN, 0);
+		}
+			
 		
 		READING_COUNT++;
 		
