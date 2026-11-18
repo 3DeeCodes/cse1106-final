@@ -1,0 +1,3 @@
+	 75.3 F 	NORMAL	 OFF
+  	 1.0 F 	WARNING	 ON
+ 

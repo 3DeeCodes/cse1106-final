@@ -5,7 +5,8 @@
 #include <pigpio.h>
 #include <string.h>
 #define PIN 17
-#define READING_COUNT 5
+#define MAX_READINGS 100
+
 int Temp_Max = 76;
 int Temp_Min = 68;
 
@@ -105,7 +106,42 @@ int main(void) {
  gpioInitialise();
  gpioSetMode(PIN, PI_OUTPUT);
  gpioWrite(PIN, 0); //LED OFF
-	double readings[READING_COUNT] = { 68.0, 69.0, 70.0, 71.0, 100.0 };
+	
+	
+	double readings[MAX_READINGS];
+	int READING_COUNT = 0;
+	
+	char answer = 'y';
+	
+	while(answer == 'y' || answer == 'Y')
+	{
+		if (READING_COUNT >= MAX_READINGS)
+		{
+			printf("Max number of readings reached.\n");
+			break;
+		}
+		
+		printf("Enter a value: ");
+		if (scanf("%lf", &readings[READING_COUNT]) != 1)
+		{
+			printf("Please enter a valid number.\n");
+			break;
+		}
+		
+		if (isOutOfRange(readings[READING_COUNT]) == 1)
+		{
+			 gpioWrite(PIN, 1);
+		}
+		
+		READING_COUNT++;
+		
+		
+		printf("Do you want to enter another value (y/n)");
+		scanf(" %c", &answer);
+	}
+	
+	
+	
 	printf("========================================\n");
 	printf("LEGACY CLASSROOM TEMPERATURE MONITOR\n");
 	printf("========================================\n\n");
@@ -145,16 +181,17 @@ int main(void) {
 	for (int i = 0; i < READING_COUNT; i++) {
 
 		if (isOutOfRange(readings[i]) == 1) {
-			fprintf(" \t %.1f F %s %s ", readings[i], "\tWARNING\t", "ON\n");
+			fprintf(file, " \t %.1f F %s %s ", readings[i], "\tWARNING\t", "ON\n");
 
 		}
 		else {
-			fprintf("\t %.1f F %s %s ", readings[i], "\tNORMAL\t", "OFF\n");
+			fprintf(file, "\t %.1f F %s %s ", readings[i], "\tNORMAL\t", "OFF\n");
 		}
 
 	}
 
 	fclose(file);
+	
 	
 	return 0;
 }
