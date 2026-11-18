@@ -166,7 +166,7 @@ int main(void) {
 	
 	
 
-	FILE* file = fopen("output.txt", "w");
+	FILE* file = fopen("../tests/output.txt", "w");
 
 	if (file == NULL)
 	{
