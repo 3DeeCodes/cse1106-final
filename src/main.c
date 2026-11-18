@@ -128,13 +128,7 @@ int main(void) {
 		
 	}
 	
-	FILE* file = fopen("testResults.txt", "w");
-	if (file == NULL)
-	{
-		perror("Could not create file");
-			return 1;
-
-	}
+	
 
 	FILE* file = fopen("output.txt", "w");
 
